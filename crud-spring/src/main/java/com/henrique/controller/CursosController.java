@@ -2,9 +2,7 @@ package com.henrique.controller;
 
 import com.henrique.model.Course;
 import com.henrique.repository.CourseRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +17,14 @@ public class CursosController {
     }
 
     @GetMapping
-    public List<Course > list(){
+    public @ResponseBody List<Course > list(){
         return courseRepository.findAll();
     };
+
+    @PostMapping
+    public void post(@RequestBody Course course){
+        courseRepository.save(course);
+    }
 
 
 
