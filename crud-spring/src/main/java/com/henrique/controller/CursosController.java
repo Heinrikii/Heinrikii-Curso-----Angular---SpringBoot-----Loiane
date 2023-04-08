@@ -2,6 +2,8 @@ package com.henrique.controller;
 
 import com.henrique.model.Course;
 import com.henrique.repository.CourseRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +24,11 @@ public class CursosController {
     };
 
     @PostMapping
-    public void post(@RequestBody Course course){
-        courseRepository.save(course);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Course create(@RequestBody Course course){
+        return courseRepository.save(course);
     }
+
 
 
 
